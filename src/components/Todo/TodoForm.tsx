@@ -1,6 +1,10 @@
 import React, {ChangeEvent, FormEvent, useState} from 'react';
 
-export const TodoForm = () => {
+interface Props {
+    onTodoChange: () => void;
+}
+
+export const TodoForm = (props: Props) => {
     const [input, setInput] = useState<string>('');
 
     const handleSubmit = async (e: FormEvent) => {
@@ -17,6 +21,7 @@ export const TodoForm = () => {
             }),
         })
         setInput('');
+        props.onTodoChange();
     }
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
