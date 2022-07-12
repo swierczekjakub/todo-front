@@ -1,9 +1,14 @@
 import React from 'react';
+import { TodoEntity } from 'types';
 
-export const Todo = () => {
+interface Props {
+    todo: TodoEntity;
+}
+
+export const Todo = (props: Props) => {
     return (
-        <div>
-
-        </div>
+        <li>
+            {props.todo.name}
+        </li>
     );
 };
