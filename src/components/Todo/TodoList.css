@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'roboto', 'arial', 'helvetica', 'sans-serif';
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(to bottom, #cdb1e7 0%, #497BE8 100%);
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.wrapper {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
+    background-color: #ffffff;
+    max-width: 700px;
+    max-height: 600px;
+    width: 100%;
+    border-radius: 5px;
+    padding: 25px;
+    overflow-y: scroll;
+}
+
+.wrapper header {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.todo-form {
+    margin: 20px 0;
+    display: flex;
+    height: 45px;
+    width: 100%;
+}
+
+.todo-form input {
+    width: 85%;
+    height: 100%;
+    border: 1px solid #757474;
+    font-size: 20px;
+    border-radius: 3px;
+    padding-left: 15px;
+    outline: none;
+}
+
+.todo-form button {
+    color: white;
+    width: 60px;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: #7796de;
+    font-size: 25px;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-left: 5px;
+}
+
+.todo-list {
+    font-size: 19px;
+}
+
+.todo-list li {
+    position: relative;
+    list-style: none;
+    height: 45px;
+    line-height: 45px;
+    background: #eae3f3;
+    margin-bottom: 8px;
+    padding-left: 10px;
+}
+
+.todo-list li .check-input {
+    position: absolute;
+    height: 100%;
+    width: 20px;
+    right: 95px;
+    border: none;
+    outline: none;
+}
+
+.todo-list li button {
+    height: 100%;
+    width: 40px;
+    border: none;
+    outline: none;
+    position: absolute;
+    right: 0;
+    background: rgba(232, 215, 17, 0.57);
+    color: white;
+}
+
+.todo-list li .btn-trash {
+    background: #ee4e4e;
+    color: white;
+}
+
+.todo-list li .btn-pen {
+    right: 43px;
+    background: #567cc9;
+}
+
+.todo-list li .btn-check {
+    background: #62ab50;
+}
+
+.todo-message {
+    margin-bottom: 15px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.todo-message p {
+    margin-bottom: 8px;
+}
+
+.todo-edit-input {
+    width: 93.5%;
+    position: relative;
+    list-style: none;
+    height: 45px;
+    background: #eae3f3;
+    margin-bottom: 8px;
+    font-size: 19px;
+    border: none;
+    outline: none;
+}
