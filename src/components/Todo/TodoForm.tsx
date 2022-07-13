@@ -1,6 +1,7 @@
 import React, {ChangeEvent, FormEvent, useEffect, useState} from 'react';
 import { TodoEntity } from 'types';
 import "./TodoList.css";
+import {apiUrl} from "../../config/api";
 
 interface Props {
     todos: TodoEntity[];
@@ -27,7 +28,7 @@ export const TodoForm = (props: Props) => {
             return;
         }
 
-        await fetch('http://localhost:3001/todo', {
+        await fetch(`${apiUrl}/todo`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',

@@ -4,6 +4,7 @@ import {Todo} from "./Todo";
 import {Spinner} from "../common/Spinner";
 import { TodoEntity, NumBool } from 'types';
 import './TodoList.css';
+import {apiUrl} from "../../config/api";
 
 export const TodoList = () => {
     const [todos, setTodos] = useState<TodoEntity[] | null>(null);
@@ -11,7 +12,7 @@ export const TodoList = () => {
     const refreshTodos = async () => {
         setTodos(null);
         try {
-            const res = await fetch('http://localhost:3001/todo');
+            const res = await fetch(`${apiUrl}/todo`);
             setTodos(await res.json());
         } catch (e) {
             console.log(e);
@@ -21,7 +22,7 @@ export const TodoList = () => {
     const handleDeleteTodo = async (id: string) => {
         setTodos(null);
         try {
-            await fetch(`http://localhost:3001/todo/${id}`, {
+            await fetch(`${apiUrl}/todo/${id}`, {
                 method: "DELETE",
             });
         } catch (e) {
@@ -41,7 +42,7 @@ export const TodoList = () => {
                     name: value,
                 };
                 (async () => {
-                    await fetch(`http://localhost:3001/todo/${id}`, {
+                    await fetch(`${apiUrl}/todo/${id}`, {
                         method: 'PATCH',
                         headers: {
                             'Content-type': 'application/json',
@@ -68,7 +69,7 @@ export const TodoList = () => {
                     isCompleted: Number(!todo.isCompleted) as NumBool,
                 };
                 (async () => {
-                    await fetch(`http://localhost:3001/todo/${id}`, {
+                    await fetch(`${apiUrl}/todo/${id}`, {
                         method: 'PATCH',
                         headers: {
                             'Content-type': 'application/json',
