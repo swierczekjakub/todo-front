@@ -32,6 +32,32 @@ export const TodoList = () => {
         setTodos(updatedTodos);
     };
 
+    const handleEditTodo = (id: string, value: string) => {
+        setTodos(null);
+        const editedTodos = todos!.map(todo => {
+            if (todo.id === id) {
+                const editedTodo = {
+                    ...todo,
+                    name: value,
+                };
+                (async () => {
+                    await fetch(`http://localhost:3001/todo/${id}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            updatedTodo: {...editedTodo},
+                        }),
+                    })
+                })()
+                return editedTodo;
+            }
+            return todo;
+        })
+        setTodos(editedTodos);
+    }
+
     const handleCheckTodo = async (id: string) => {
         setTodos(null);
 
@@ -40,8 +66,7 @@ export const TodoList = () => {
                 const checkedTodo = {
                     ...todo,
                     isCompleted: Number(!todo.isCompleted) as NumBool,
-                }
-                console.log(checkedTodo);
+                };
                 (async () => {
                     await fetch(`http://localhost:3001/todo/${id}`, {
                         method: 'PATCH',
@@ -73,7 +98,7 @@ export const TodoList = () => {
 
     return (
         <div className="wrapper">
-            <header>Todo App</header>
+            <header>What are the plans for today?</header>
             <TodoForm onTodoChange={refreshTodos} todos={todos}/>
             <ul className="todo-list">
                 {todos?.map((todo: TodoEntity) =>
@@ -82,6 +107,7 @@ export const TodoList = () => {
                         key={todo.id}
                         handleDeleteTodo={handleDeleteTodo}
                         handleCheckTodo={handleCheckTodo}
+                        handleEditTodo={handleEditTodo}
                     />)}
             </ul>
         </div>
