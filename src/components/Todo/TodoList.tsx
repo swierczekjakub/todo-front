@@ -3,6 +3,7 @@ import {TodoForm} from "./TodoForm";
 import {Todo} from "./Todo";
 import {Spinner} from "../common/Spinner";
 import { TodoEntity, NumBool } from 'types';
+import './TodoList.css';
 
 export const TodoList = () => {
     const [todos, setTodos] = useState<TodoEntity[] | null>(null);
@@ -71,9 +72,10 @@ export const TodoList = () => {
     }
 
     return (
-        <div>
-            <TodoForm onTodoChange={refreshTodos}/>
-            <ul>
+        <div className="wrapper">
+            <header>Todo App</header>
+            <TodoForm onTodoChange={refreshTodos} todos={todos}/>
+            <ul className="todo-list">
                 {todos?.map((todo: TodoEntity) =>
                     <Todo
                         todo={todo}

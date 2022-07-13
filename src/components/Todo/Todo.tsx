@@ -1,5 +1,6 @@
-import React, {FormEvent} from 'react';
-import { TodoEntity } from 'types';
+import React from 'react';
+import {TodoEntity} from 'types';
+import "./TodoList.css";
 
 interface Props {
     todo: TodoEntity;
@@ -9,15 +10,15 @@ interface Props {
 
 export const Todo = ({handleCheckTodo, handleDeleteTodo, todo}: Props) => {
     return (
-        <li>
+        <li style={todo.isCompleted ? {textDecoration: 'line-through', background: "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3))"} : {}}>
             {todo.name}
             <input
                 type="checkbox"
                 checked={Boolean(todo.isCompleted)}
                 onChange={() => handleCheckTodo(todo.id!)}
             />
-            <button><i className="fa-solid fa-pen"/></button>
-            <button onClick={() => handleDeleteTodo(todo.id!)}><i className="fa-solid fa-trash-can"/></button>
+                {/*<button><i className="fa-solid fa-pen"/></button>*/}
+                <button onClick={() => handleDeleteTodo(todo.id!)}><i className="fa-solid fa-trash-can"/></button>
         </li>
     );
 };

@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(to bottom, #cdb1e7 0%, #497BE8 100%);
+}
+
+.wrapper {
+    margin: 120px auto;
+    background-color: #efe2e2;
+    max-width: 700px;
+    width: 100%;
+    border-radius: 5px;
+    padding: 25px;
+}
+
+.wrapper header {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.todo-form {
+    margin: 20px 0;
+    display: flex;
+    height: 45px;
+    width: 100%;
+}
+
+.todo-form input {
+    width: 85%;
+    height: 100%;
+    border: 1px solid #ccc;
+    font-size: 17px;
+    border-radius: 3px;
+    padding-left: 15px;
+    outline: none;
+}
+
+.todo-form button {
+    width: 60px;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: #7796de;
+    font-size: 22px;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-left: 5px;
+}
+
+.todo-list {
+    font-size: 19px;
+}
+
+.todo-list li {
+    position: relative;
+    list-style: none;
+    height: 45px;
+    line-height: 45px;
+    background: #e0d5d5;
+    margin-bottom: 8px;
+    padding-left: 10px;
+
+}
+
+.todo-list li input {
+    position: absolute;
+    height: 100%;
+    width: 20px;
+    right: 55px;
+    border: none;
+    outline: none;
+}
+
+.todo-list li button {
+    height: 100%;
+    width: 40px;
+    border: none;
+    outline: none;
+    position: absolute;
+    right: 0;
+    background: #ee4e4e;
+    color: white;
+}
+
+.todo-message {
+    margin-bottom: 15px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.todo-message p {
+    margin-bottom: 8px;
+}
+
+/*}*/

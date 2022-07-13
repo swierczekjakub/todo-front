@@ -1,18 +1,29 @@
-import React, {ChangeEvent, FormEvent, useState} from 'react';
+import React, {ChangeEvent, FormEvent, useEffect, useState} from 'react';
+import { TodoEntity } from 'types';
+import "./TodoList.css";
 
 interface Props {
+    todos: TodoEntity[];
     onTodoChange: () => void;
 }
 
 export const TodoForm = (props: Props) => {
     const [input, setInput] = useState<string>('');
     const [isCorrect, setIsCorrect] = useState<boolean>(true);
+    const [isExists, setIsExists] = useState<boolean>(true);
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
-        if (!input.length || input.length < 3) {
+        if (props.todos.find(el => el.name === input)) {
+            setIsExists(false);
+            setIsCorrect(true);
+            return;
+        }
+
+        if (!input.length || input.length < 3 || input.length > 60) {
             setIsCorrect(false);
+            setIsExists(true);
             return;
         }
 
@@ -34,6 +45,10 @@ export const TodoForm = (props: Props) => {
         setInput(e.target.value);
     };
 
+    useEffect(() => {
+
+    }, [isExists, isCorrect])
+
     return (
         <>
             <form className="todo-form" onSubmit={handleSubmit}>
@@ -44,10 +59,13 @@ export const TodoForm = (props: Props) => {
                     name="text"
                     onChange={handleChange}
                 />
-                <button className="todo-button">Add</button>
+                <button className="todo-button"><i className="fa-solid fa-plus"/></button>
 
             </form>
-            {isCorrect ? false : <p>Todo must contains at least 3 letters.</p>}
+            <div className="todo-message">
+                {isExists ? false : <p>A todo with this name already exists.</p>}
+                {isCorrect ? false : <p>Todo has to be between 3 and 60 characters.</p>}
+            </div>
         </>
 
     );
