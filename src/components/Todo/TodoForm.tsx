@@ -6,10 +6,15 @@ interface Props {
 
 export const TodoForm = (props: Props) => {
     const [input, setInput] = useState<string>('');
+    const [isCorrect, setIsCorrect] = useState<boolean>(true);
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        console.log(input);
+
+        if (!input.length || input.length < 3) {
+            setIsCorrect(false);
+            return;
+        }
 
         await fetch('http://localhost:3001/todo', {
             method: 'POST',
@@ -30,15 +35,20 @@ export const TodoForm = (props: Props) => {
     };
 
     return (
-        <form className="todo-form" onSubmit={handleSubmit}>
-            <input
-                type="text"
-                placeholder="Enter a todo"
-                value={input}
-                name="text"
-                onChange={handleChange}
-            />
-            <button className="todo-button">Add</button>
-        </form>
+        <>
+            <form className="todo-form" onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="Enter a todo"
+                    value={input}
+                    name="text"
+                    onChange={handleChange}
+                />
+                <button className="todo-button">Add</button>
+
+            </form>
+            {isCorrect ? false : <p>Todo must contains at least 3 letters.</p>}
+        </>
+
     );
 };
